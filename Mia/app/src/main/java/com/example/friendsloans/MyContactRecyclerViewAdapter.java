@@ -38,6 +38,7 @@ public class MyContactRecyclerViewAdapter extends RecyclerView.Adapter<MyContact
         Contact con = mValues.get(position);
         holder.mItem = con;
         holder.mContentView.setText(con.name);
+        holder.mDescri.setText(con.phone);
     }
 
     @Override
@@ -48,12 +49,14 @@ public class MyContactRecyclerViewAdapter extends RecyclerView.Adapter<MyContact
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mContentView;
+        public final TextView mDescri;
         public Contact mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
             mContentView = (TextView) view.findViewById(R.id.content_Contact);
+            mDescri = (TextView) view.findViewById(R.id.description);
         }
 
         @Override

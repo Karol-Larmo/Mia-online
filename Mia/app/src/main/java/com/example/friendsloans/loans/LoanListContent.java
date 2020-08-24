@@ -3,6 +3,8 @@ package com.example.friendsloans.loans;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.friendsloans.contacts.ContactListContent;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +28,7 @@ public class LoanListContent {
      */
     public static final Map<String, Loan> ITEM_MAP = new HashMap<String, Loan>();
 
-    private static final int COUNT = 3;
+    private static final int COUNT = 0;
 
     static {
         // Add some sample items.
@@ -35,13 +37,13 @@ public class LoanListContent {
         }
     }
 
-    private static void addItem(Loan item) {
+    public static void addItem(Loan item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.id, item);
     }
 
     private static Loan createDummyItem(int position) {
-        return new Loan(String.valueOf(position), "Loan " + position, makeDetails(position), "10");
+        return new Loan(String.valueOf(position), new ContactListContent.Contact(), makeDetails(position), "10");
     }
 
     private static String makeDetails(int position) {
@@ -56,23 +58,31 @@ public class LoanListContent {
 
     public static class Loan implements Parcelable {
         public final String id;
-        public final String content;
+        public final ContactListContent.Contact contact;
         public final String details;
         public final String amount;
 
-        public Loan(String id, String content, String details, String amount) {
+        public Loan(String id, ContactListContent.Contact content, String details, String amount) {
             this.id = id;
-            this.content = content;
+            this.contact = content;
             this.details = details;
             this.amount = amount;
         }
         protected Loan(Parcel in) {
             id = in.readString();
-            content = in.readString();
+            String c1 = in.readString();
+            String c2 = in.readString();
+            String c3 = in.readString();
+            String c4=  in.readString();
+            contact = new ContactListContent.Contact(c1,c2,c3,c4);
             details = in.readString();
             amount = in.readString();
         }
 
+        public String getId()
+        {
+            return id;
+        }
 
         public static final Creator<Loan> CREATOR = new Creator<Loan>() {
             @Override
@@ -89,7 +99,7 @@ public class LoanListContent {
 
         @Override
         public String toString() {
-            return content;
+            return id;
         }
 
         @Override
@@ -100,7 +110,10 @@ public class LoanListContent {
         @Override
         public void writeToParcel(Parcel dest, int flags) {
             dest.writeString(id);
-            dest.writeString(content);
+            dest.writeString(contact.id);
+            dest.writeString(contact.name);
+            dest.writeString(contact.phone);
+            dest.writeString(contact.email);
             dest.writeString(details);
             dest.writeString(amount);
 

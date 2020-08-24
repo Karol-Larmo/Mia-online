@@ -72,7 +72,6 @@ public class ContactFragment extends Fragment {
     public interface OnContactFragmentInteractionListener {
         void onContactFragmentClickInteraction(ContactListContent.Contact contact, int position);
         void onContactFragmentLongClickInteraction(int position);
-        void onContactDeleteButtonClick(int position);
     }
 
 }

@@ -1,9 +1,15 @@
 package com.example.friendsloans.contacts;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import com.example.friendsloans.loans.LoanListContent;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * Helper class for providing sample content for user interfaces created by
@@ -53,7 +59,7 @@ public class ContactListContent {
     /**
      * A dummy item representing a piece of content.
      */
-    public static class Contact {
+    public static class Contact implements Parcelable {
         public final String id;
         public final String name;
         public final String phone;
@@ -66,10 +72,51 @@ public class ContactListContent {
             this.email = email;
 
         }
+        public Contact()
+        {
 
+            id = "Loan0";
+            name="test";
+            phone="000000000";
+            email="test@gmail.com";
+        }
+
+
+        protected Contact(Parcel in) {
+            id = in.readString();
+            name = in.readString();
+            phone = in.readString();
+            email = in.readString();
+        }
+
+
+        public static final Creator<Contact> CREATOR = new Creator<Contact>() {
+            @Override
+            public Contact createFromParcel(Parcel in) {
+                return new Contact(in);
+            }
+
+            @Override
+            public Contact[] newArray(int size) {
+                return new Contact[size];
+            }
+        };
         @Override
         public String toString() {
             return name;
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(id);
+            dest.writeString(name);
+            dest.writeString(phone);
+            dest.writeString(email);
         }
     }
 }

@@ -3,8 +3,8 @@ package com.example.friendsloans;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
@@ -68,13 +68,19 @@ public class AddLoan extends AppCompatActivity implements ContactFragment.OnCont
             }
 
         }
-
+        View w = findViewById(R.id.contactsFragment);
+        //getSupportFragmentManager().findFragmentById(R.id.contactsFragment).not
 
     }
 
 
     @Override
     public void onContactFragmentClickInteraction(ContactListContent.Contact contact, int position) {
+        Intent intent_a = new Intent(this, AddLoan_value.class );
+        intent_a.putExtra("Intent_value", contact);
+        startActivity(intent_a);
+
+
 
     }
 
@@ -83,10 +89,6 @@ public class AddLoan extends AppCompatActivity implements ContactFragment.OnCont
 
     }
 
-    @Override
-    public void onContactDeleteButtonClick(int position) {
-
-    }
 }
 
 
