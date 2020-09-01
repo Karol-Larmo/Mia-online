@@ -13,9 +13,7 @@ import android.view.ViewGroup;
 
 import com.example.friendsloans.loans.LoanListContent;
 
-/**
- * A fragment representing a list of Items.
- */
+
 public class LoanFragment extends Fragment {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -27,8 +25,7 @@ public class LoanFragment extends Fragment {
     public LoanFragment() {
     }
 
-    // TODO: Customize parameter initialization
-    @SuppressWarnings("unused")
+
     public static LoanFragment newInstance(int columnCount) {
         LoanFragment fragment = new LoanFragment();
         Bundle args = new Bundle();
@@ -72,6 +69,6 @@ public class LoanFragment extends Fragment {
     public interface OnListFragmentInteractionListener {
         void onListFragmentClickInteraction(LoanListContent.Loan loan, int position);
         void onListFragmentLongClickInteraction(int position);
-        void onListDeleteButtonClick(int position);
+
     }
 }

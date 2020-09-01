@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddLoan_value"></activity>
+        <activity android:name=".ShowLoan"></activity>
+        <activity android:name=".LoanInfo_Activity" />
+        <activity android:name=".AddLoan_value" />
         <activity android:name=".AddLoan" />
         <activity
             android:name=".MainActivity"

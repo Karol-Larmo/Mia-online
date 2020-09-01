@@ -10,6 +10,7 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -23,6 +24,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     public static final int BUTTON_REG =1;
+    public static final String loanExtra = "loanExtra";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +44,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-       /* ContentResolver resolver = getContentResolver();
-        Cursor cursor = resolver.query(ContactsContract.Contacts.CONTENT_URI, null, null,null,null);*/
+
 
 
     }
@@ -55,26 +56,21 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+
+
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
+    public void ShowLoan(View view) {
+        Intent intent = new Intent(getApplicationContext(),ShowLoan.class);
+        startActivity(intent);
+    }
 
-
-
-
-
-
-
+    public void Showdet(View view)
+    {
+        Intent intent = new Intent(getApplicationContext(),LoanInfo_Activity.class);
+        startActivity(intent);
+    }
 }

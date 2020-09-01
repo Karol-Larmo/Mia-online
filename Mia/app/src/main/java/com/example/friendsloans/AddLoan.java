@@ -1,5 +1,6 @@
 package com.example.friendsloans;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,10 +13,15 @@ import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.friendsloans.contacts.ContactListContent;
+import com.example.friendsloans.loans.LoanListContent;
 
 public class AddLoan extends AppCompatActivity implements ContactFragment.OnContactFragmentInteractionListener {
+
+    ContactFragment.OnContactFragmentInteractionListener listener;
+    LoanListContent.Loan loan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,25 +75,36 @@ public class AddLoan extends AppCompatActivity implements ContactFragment.OnCont
 
         }
         View w = findViewById(R.id.contactsFragment);
-        //getSupportFragmentManager().findFragmentById(R.id.contactsFragment).not
+        ((ContactFragment) getSupportFragmentManager().findFragmentById(R.id.contactsFragment)).notifyDataChange();
 
     }
-
 
     @Override
     public void onContactFragmentClickInteraction(ContactListContent.Contact contact, int position) {
         Intent intent_a = new Intent(this, AddLoan_value.class );
         intent_a.putExtra("Intent_value", contact);
-        startActivity(intent_a);
-
-
-
+        startActivityForResult(intent_a,1);
     }
 
     @Override
     public void onContactFragmentLongClickInteraction(int position) {
 
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == RESULT_OK)
+        {
+            loan = (LoanListContent.Loan) data.getExtras().getParcelable("juhuu");
+            //LoanListContent.addItem(loan);
+            Toast.makeText(this,"Loan created", Toast.LENGTH_LONG).show();
+            finish();
+
+        }
+    }
+
 
 }
 

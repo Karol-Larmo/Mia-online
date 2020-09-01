@@ -13,6 +13,8 @@ import com.example.friendsloans.loans.LoanListContent;
 
 public class AddLoan_value extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +35,11 @@ public class AddLoan_value extends AppCompatActivity {
         LoanListContent.addItem(loan);
 
         Intent intent = new Intent();
+        intent.putExtra("juhuu",loan );
         setResult(RESULT_OK,intent);
+
+        amount_e.setText("");
+        description_e.setText("");
         finish();
 
     }

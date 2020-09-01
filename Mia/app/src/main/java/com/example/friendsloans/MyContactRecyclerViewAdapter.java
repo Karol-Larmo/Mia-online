@@ -11,10 +11,7 @@ import com.example.friendsloans.contacts.ContactListContent.Contact;
 
 import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link Contact}.
- * TODO: Replace the implementation with code for your data type.
- */
+
 public class MyContactRecyclerViewAdapter extends RecyclerView.Adapter<MyContactRecyclerViewAdapter.ViewHolder> {
 
     private final List<Contact> mValues;
@@ -34,11 +31,23 @@ public class MyContactRecyclerViewAdapter extends RecyclerView.Adapter<MyContact
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         Contact con = mValues.get(position);
         holder.mItem = con;
         holder.mContentView.setText(con.name);
         holder.mDescri.setText(con.phone);
+
+        holder.mView.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                if(null !=CmListener)
+                {
+                    CmListener.onContactFragmentClickInteraction(holder.mItem,position);
+                }
+            }
+        });
     }
 
     @Override

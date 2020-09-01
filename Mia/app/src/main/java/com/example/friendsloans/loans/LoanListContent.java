@@ -28,7 +28,7 @@ public class LoanListContent {
      */
     public static final Map<String, Loan> ITEM_MAP = new HashMap<String, Loan>();
 
-    private static final int COUNT = 0;
+    private static final int COUNT = 1;
 
     static {
         // Add some sample items.
