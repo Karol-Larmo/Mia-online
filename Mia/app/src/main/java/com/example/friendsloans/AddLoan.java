@@ -12,21 +12,26 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.friendsloans.contacts.ContactListContent;
 import com.example.friendsloans.loans.LoanListContent;
 
-public class AddLoan extends AppCompatActivity implements ContactFragment.OnContactFragmentInteractionListener {
+public class AddLoan extends AppCompatActivity implements ContactFragment.OnContactFragmentInteractionListener{
 
     ContactFragment.OnContactFragmentInteractionListener listener;
     LoanListContent.Loan loan;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_loan);
+
+
     }
 
 
@@ -100,10 +105,14 @@ public class AddLoan extends AppCompatActivity implements ContactFragment.OnCont
             loan = (LoanListContent.Loan) data.getExtras().getParcelable("juhuu");
             //LoanListContent.addItem(loan);
             Toast.makeText(this,"Loan created", Toast.LENGTH_LONG).show();
+
+            ContactListContent.ITEMS.clear();
+            ContactListContent.ITEM_MAP.clear();
             finish();
 
         }
     }
+
 
 
 }

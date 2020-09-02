@@ -36,8 +36,12 @@ public class MyLoanRecyclerViewAdapter extends RecyclerView.Adapter<MyLoanRecycl
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         Loan loan = mValues.get(position);
         holder.mItem = loan;
+
+
         holder.Mid.setText(loan.contact.name);
         holder.mMoney.setText(loan.amount);
+
+
         Context context = holder.mView.getContext();
 
         holder.mView.setOnClickListener(new View.OnClickListener()

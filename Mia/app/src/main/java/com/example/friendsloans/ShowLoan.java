@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.friendsloans.loans.LoanListContent;
@@ -21,21 +22,18 @@ public class ShowLoan extends AppCompatActivity implements LoanFragment.OnListFr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_loan);
+        Log.i("Loaninfo", "test Loan list loeaded");
     }
 
 
 
 
-private void StartLoanInfoActivity(LoanListContent.Loan loan, int position)
-{
-
-}
-
 
     @Override
     public void onListFragmentClickInteraction(LoanListContent.Loan loan, int position) {
-        Toast.makeText(this, "test123", Toast.LENGTH_LONG).show();
-       Intent intent = new Intent(this, LoanInfo_Activity.class);
+        Log.i("Loaninfo", "test Loan info Click");
+        //Toast.makeText(this, "test123", Toast.LENGTH_LONG).show();
+       Intent intent = new Intent(getApplicationContext(), LoanInfo_Activity.class);
        intent.putExtra(loanExtra,loan);
        startActivity(intent);
         //StartLoanInfoActivity(loan,position);
@@ -43,9 +41,9 @@ private void StartLoanInfoActivity(LoanListContent.Loan loan, int position)
 
     @Override
     public void onListFragmentLongClickInteraction(int position) {
-        Toast.makeText(this, "test4 - " +position, Toast.LENGTH_LONG).show();
-        //LoanInfo_Fragment loanInfo_fragment = (LoanInfo_Fragment) getSupportFragmentManager().findFragmentById(R.id.displayLoanInfo);
-       // loanInfo_fragment.displayLoan(loan);
+        Intent intent = new Intent(getApplicationContext(), LoanInfo_Activity.class);
+        //
+        startActivity(intent);
 
 
     }

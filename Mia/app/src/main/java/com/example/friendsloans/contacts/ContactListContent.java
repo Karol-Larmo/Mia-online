@@ -29,7 +29,7 @@ public class ContactListContent {
      */
     public static final Map<String, Contact> ITEM_MAP = new HashMap<String, Contact>();
 
-    private static final int COUNT = 1;
+    private static final int COUNT = 0;
 
     static {
         // Add some sample items.

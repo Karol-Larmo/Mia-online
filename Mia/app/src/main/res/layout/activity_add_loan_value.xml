@@ -43,4 +43,32 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/amount_editText" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DEBIT "
+        android:textOn="CREDIT"
+        android:textOff="DEBIT"
+        app:layout_constraintBottom_toTopOf="@+id/addLoanButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.182"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description_editText"
+        app:layout_constraintVertical_bias="0.487"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="53dp"
+        android:layout_height="17dp"
+        android:text="CREDIT"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/addLoanButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/switch1"
+        app:layout_constraintTop_toBottomOf="@+id/description_editText"
+        app:layout_constraintVertical_bias="0.507" />
 </androidx.constraintlayout.widget.ConstraintLayout>
