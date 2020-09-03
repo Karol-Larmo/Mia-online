@@ -12,4 +12,8 @@
     <string name="title_activity_show_loan">ShowLoan</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="call_question">Pay this loan with BLIK ?</string>
+    <string name="call_confirm">YES</string>
+    <string name="call_declain">NO</string>
+    <string name="pay_dialog_tag">pay_dialog_tag</string>
 </resources>
