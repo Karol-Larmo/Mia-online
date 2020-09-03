@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.friendsloans.contacts.ContactListContent.Contact;
@@ -37,6 +38,9 @@ public class MyContactRecyclerViewAdapter extends RecyclerView.Adapter<MyContact
         holder.mContentView.setText(con.name);
         holder.mDescri.setText(con.phone);
 
+
+
+
         holder.mView.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -59,6 +63,7 @@ public class MyContactRecyclerViewAdapter extends RecyclerView.Adapter<MyContact
         public final View mView;
         public final TextView mContentView;
         public final TextView mDescri;
+
         public Contact mItem;
 
         public ViewHolder(View view) {
@@ -66,7 +71,8 @@ public class MyContactRecyclerViewAdapter extends RecyclerView.Adapter<MyContact
             mView = view;
             mContentView = (TextView) view.findViewById(R.id.content_Contact);
             mDescri = (TextView) view.findViewById(R.id.description);
-        }
+
+    }
 
         @Override
         public String toString() {

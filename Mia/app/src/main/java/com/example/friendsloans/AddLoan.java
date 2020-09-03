@@ -39,6 +39,7 @@ public class AddLoan extends AppCompatActivity implements ContactFragment.OnCont
     public void SearchContact(View view) {
         EditText name_s= findViewById(R.id.searchname);
         String name_search = name_s.getText().toString();
+        String name_little = name_search.toLowerCase();
 
         ContentResolver resolver = getContentResolver();
         Cursor cursor = resolver.query(ContactsContract.Contacts.CONTENT_URI, null,null,null,null);
@@ -47,12 +48,13 @@ public class AddLoan extends AppCompatActivity implements ContactFragment.OnCont
         {
 
             String name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME_PRIMARY));
+            String name_little_con = name.toLowerCase();
             String phoneNumber="";
             String email="";
 
-            Log.i("INFOO", name );
+            Log.i("INFOO", name + "  " + name_little_con);
 
-            if (name.contains(name_search)) {
+            if (name.contains(name_search) || name.contains(name_little) || name_little_con.contains(name_little)) {
                 String id = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
 
                 Cursor phoneCursor = resolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,

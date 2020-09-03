@@ -5,11 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.friendsloans.loans.LoanListContent;
-
-import static com.example.friendsloans.MainActivity.loanExtra;
 
 public class ShowLoan extends AppCompatActivity implements LoanFragment.OnListFragmentInteractionListener {
 

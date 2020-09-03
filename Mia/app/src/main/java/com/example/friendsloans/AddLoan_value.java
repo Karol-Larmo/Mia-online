@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 
+import com.example.friendsloans.PersonLoan.PersonLoanContent;
 import com.example.friendsloans.contacts.ContactListContent;
 import com.example.friendsloans.loans.LoanListContent;
 
@@ -52,6 +54,20 @@ public class AddLoan_value extends AppCompatActivity implements CompoundButton.O
         String description = description_e.getText().toString();
 
         ContactListContent.Contact contact = getIntent().getParcelableExtra("Intent_value");
+
+        int tmp = Integer.parseInt(amount);
+        if(type.equals("credit"))
+        {
+            tmp = -tmp;
+        }
+        PersonLoanContent.PersonLoan person = new PersonLoanContent.PersonLoan("Person" + MainActivity.person_c, contact, tmp);
+
+        Log.i("Person_example", "person created" + MainActivity.person_c + " con = " + contact.phone + " amount " + amount + "  " +tmp) ;
+
+
+        PersonLoanContent.addItem(person);
+
+
         String ID = "Loan"+ LoanListContent.ITEMS.size() +1;
         LoanListContent.Loan loan = new LoanListContent.Loan(ID,contact,description,amount, type);
         LoanListContent.addItem(loan);

@@ -4,53 +4,52 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.friendsloans.loans.LoanListContent.Loan;
+import com.example.friendsloans.PersonLoan.PersonLoanContent.PersonLoan;
 
 import java.util.List;
 
 
-public class MyLoanRecyclerViewAdapter extends RecyclerView.Adapter<MyLoanRecyclerViewAdapter.ViewHolder> {
+public class MyPersonLoanRecyclerViewAdapter extends RecyclerView.Adapter<MyPersonLoanRecyclerViewAdapter.ViewHolder> {
 
-    private final List<Loan> mValues;
-    private final LoanFragment.OnListFragmentInteractionListener mListener;
+    private final List<PersonLoan> mValues;
+    private final PersonLoanFragment.OnPersonFragmentInteractionListener mListener;
 
-    public MyLoanRecyclerViewAdapter(List<Loan> items, LoanFragment.OnListFragmentInteractionListener mListener) {
+    public MyPersonLoanRecyclerViewAdapter(List<PersonLoan> items, PersonLoanFragment.OnPersonFragmentInteractionListener mListener) {
         mValues = items;
         this.mListener = mListener;
     }
 
-
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_item, parent, false);
+                .inflate(R.layout.fragment_item_person, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        Loan loan = mValues.get(position);
-        holder.mItem = loan;
+       PersonLoan Personloan = mValues.get(position);
+        holder.mItem = Personloan;
 
-
-        holder.Mid.setText(loan.contact.name);
-        holder.mMoney.setText(loan.amount);
+        Log.i("PLVIEW", "Person name " + Personloan.person.name + " " + Personloan.person.phone + " money: "+ Personloan.amount);
+        holder.Mid.setText(Personloan.person.name);
+        holder.mMoney.setText(String.valueOf(Personloan.amount));
 
         Context context = holder.mView.getContext();
 
         Drawable photoDrawable;
-        if(loan.type.equals("debit"))
+        if(Personloan.amount >0)
         {
             photoDrawable = context.getResources().getDrawable(R.drawable.upper);
         }
-        else if(loan.type.equals("credit"))
+        else if(Personloan.amount < 0 )
         {
             photoDrawable = context.getResources().getDrawable(R.drawable.bottom);
         }
@@ -66,7 +65,7 @@ public class MyLoanRecyclerViewAdapter extends RecyclerView.Adapter<MyLoanRecycl
             {
                 if(null !=mListener)
                 {
-                    mListener.onListFragmentClickInteraction(holder.mItem,position);
+                    mListener.onPersonFragmentClickInteraction(holder.mItem,position);
                 }
             }
         });
@@ -76,10 +75,11 @@ public class MyLoanRecyclerViewAdapter extends RecyclerView.Adapter<MyLoanRecycl
             @Override
             public boolean onLongClick(View v)
             {
-                mListener.onListFragmentLongClickInteraction(position);
+                mListener.onPersonFragmentLongClickInteraction(position);
                 return false;
             }
         });
+
 
     }
 
@@ -93,19 +93,19 @@ public class MyLoanRecyclerViewAdapter extends RecyclerView.Adapter<MyLoanRecycl
         public final TextView mMoney;
         public final TextView Mid;
         public final ImageView photo;
-        public Loan mItem;
+        public PersonLoan mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mMoney = (TextView) view.findViewById(R.id.money);
-            Mid = (TextView) view.findViewById(R.id.content);
-            photo = (ImageView) view.findViewById(R.id.item_image);
+            mMoney = (TextView) view.findViewById(R.id.moneyALL);
+            Mid = (TextView) view.findViewById(R.id.name);
+            photo = (ImageView) view.findViewById(R.id.person_image);
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mMoney.getText() + "'";
+            return super.toString() + " '" ;
         }
     }
 }
