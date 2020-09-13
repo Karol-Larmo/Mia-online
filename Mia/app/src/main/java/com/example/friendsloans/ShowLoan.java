@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.example.friendsloans.PersonLoan.PersonLoanContent;
 import com.example.friendsloans.loans.LoanListContent;
 
 import static com.example.friendsloans.R.id.LoanList;
@@ -18,7 +19,8 @@ import static com.example.friendsloans.R.id.LoanList;
 public class ShowLoan extends AppCompatActivity implements LoanFragment.OnListFragmentInteractionListener {
 
     public static int current_position = -1;
-
+    private LoanListContent.Loan currentLoan;
+    private final String CURRENT_TASK = "CurrentTask";
     public static final String loanExtra = "loanExtra";
     LoanFragment.OnListFragmentInteractionListener listener;
 
@@ -28,8 +30,20 @@ public class ShowLoan extends AppCompatActivity implements LoanFragment.OnListFr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_loan);
         Log.i("Loaninfo", "test Loan list loeaded");
+        if(savedInstanceState != null)
+        {
+            currentLoan = savedInstanceState.getParcelable(CURRENT_TASK);
+        }
     }
 
+    @Override
+    protected void onSaveInstanceState (Bundle outState) {
+        if(currentLoan != null)
+        {
+            outState.putParcelable(CURRENT_TASK, currentLoan);
+        }
+        super.onSaveInstanceState(outState);
+    }
 
 
 
@@ -48,9 +62,7 @@ public class ShowLoan extends AppCompatActivity implements LoanFragment.OnListFr
 
     @Override
     public void onListFragmentLongClickInteraction(int position) {
-        Intent intent = new Intent(getApplicationContext(), LoanInfo_Activity.class);
-        //
-        startActivity(intent);
+
     }
 
     @SuppressLint("ResourceType")
@@ -63,8 +75,10 @@ public class ShowLoan extends AppCompatActivity implements LoanFragment.OnListFr
 
             Log.i("remove", "size before " + LoanListContent.ITEMS.size());
             String id = LoanListContent.ITEMS.get(current_position).id;
+            PersonLoanContent.deleteItem(LoanListContent.ITEMS.get(current_position));
             LoanListContent.ITEMS.remove(current_position);
             LoanListContent.ITEMS.remove(id);
+
             Log.i("remove", "size after " + LoanListContent.ITEMS.size());
             ((LoanFragment) getSupportFragmentManager().findFragmentById(LoanList)).notifyDataChange();
 

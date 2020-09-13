@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Build;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -83,6 +85,10 @@ public class AddLoan extends AppCompatActivity implements ContactFragment.OnCont
         }
         View w = findViewById(R.id.contactsFragment);
         ((ContactFragment) getSupportFragmentManager().findFragmentById(R.id.contactsFragment)).notifyDataChange();
+
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow( view.getWindowToken(),0);
+
 
     }
 

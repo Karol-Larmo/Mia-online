@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.example.friendsloans.MainActivity;
 import com.example.friendsloans.contacts.ContactListContent;
+import com.example.friendsloans.loans.LoanListContent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -74,18 +75,49 @@ public class PersonLoanContent {
 
     }
 
+    public static void deleteItem(LoanListContent.Loan item)
+    {
+        boolean test= true;
+
+        if(ITEMS.size() >0) {
+            for (int i = 0; i < ITEMS.size(); i++) {
+                if (ITEMS.get(i).person.phone.equals(item.contact.phone) && test) {
+                        PersonLoan tmp =ITEMS.get(i);
+                        int value = Integer.parseInt(item.amount);
+
+                    tmp.amount -= value;
+                    if(tmp.amount == 0)
+                    {
+                        String id = PersonLoanContent.ITEMS.get(i).id;
+                      PersonLoanContent.ITEMS.remove(i);
+                      PersonLoanContent.ITEM_MAP.remove(id);
+                    }
+                    else
+                    {
+                        ITEMS.set(i, tmp);
+                    }
+
+                    test = false;
+                }
+
+                }
+            }
+    }
+
 
 
 
     public static class PersonLoan implements Parcelable {
         public String id ;
         public final ContactListContent.Contact person;
+        public final String picPath;
         public int amount;
 
 
         public PersonLoan(String id, ContactListContent.Contact con, int a) {
             this.id = id;
             this.person = con;
+            this.picPath = "basic";
             this.amount = a;
 
         }
@@ -97,6 +129,7 @@ public class PersonLoanContent {
             String c3 = in.readString();
             String c4=  in.readString();
             person = new ContactListContent.Contact(c1,c2,c3,c4);
+            picPath = in.readString();
             amount = in.readInt();
         }
 
@@ -129,6 +162,7 @@ public class PersonLoanContent {
             dest.writeString(person.name);
             dest.writeString(person.phone);
             dest.writeString(person.email);
+            dest.writeString(picPath);
             dest.writeInt(amount);
         }
     }

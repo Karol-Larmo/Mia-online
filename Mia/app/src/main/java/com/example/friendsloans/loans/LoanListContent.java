@@ -83,6 +83,7 @@ public class LoanListContent {
         public final String details;
         public final String amount;
         public final String type;  // false == Debit | true == Credit
+        public String picPath;
 
         public Loan(String id, ContactListContent.Contact content, String details, String amount, String type) {
             this.id = id;
@@ -90,6 +91,7 @@ public class LoanListContent {
             this.details = details;
             //this.amount = amount;
             this.type = type;
+            this.picPath = "basic";
 
             char tmp = amount.charAt(0);
 
@@ -114,6 +116,7 @@ public class LoanListContent {
             details = in.readString();
             amount = in.readString();
             type = in.readString();
+            picPath = in.readString();
         }
 
         public String getId()
@@ -133,6 +136,8 @@ public class LoanListContent {
                 return new Loan[size];
             }
         };
+
+
 
 
         @Override
@@ -156,7 +161,13 @@ public class LoanListContent {
             dest.writeString(details);
             dest.writeString(amount);
             dest.writeString(type);
+            dest.writeString(picPath);
 
+        }
+
+        public void setPicPath(String path)
+        {
+            this.picPath = path;
         }
     }
 }

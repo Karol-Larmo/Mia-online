@@ -2,10 +2,12 @@ package com.example.friendsloans;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -75,6 +77,9 @@ public class AddLoan_value extends AppCompatActivity implements CompoundButton.O
         Intent intent = new Intent();
         intent.putExtra("juhuu",loan );
         setResult(RESULT_OK,intent);
+
+
+
 
         amount_e.setText("");
         description_e.setText("");

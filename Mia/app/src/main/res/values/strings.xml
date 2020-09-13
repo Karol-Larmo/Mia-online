@@ -16,4 +16,5 @@
     <string name="call_confirm">YES</string>
     <string name="call_declain">NO</string>
     <string name="pay_dialog_tag">pay_dialog_tag</string>
+    <string name="myFileprovider">com.example.friendsloans.fileprovider</string>
 </resources>
